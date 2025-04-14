@@ -1,0 +1,10 @@
+9
+(\neg (\neg 1a))  
+(\vee (\neg (\neg 2b)) (\rightarrow 3c false))
+(\leftrightarrow (\vee 2b 3c) (\rightarrow 4d))  
+(\rightarrow (\vee (\neg true) (\neg false)) (\leftrightarrow 4d 5e))  
+(\leftrightarrow (\rightarrow (\neg 6f) (\vee 7g 8h)) (\neg 9i))  
+(\neg (\rightarrow (\vee 1a 2b) (\leftrightarrow 3c 4d)))  
+(\vee (\vee (\vee 5e 6f) 7g) 8h)  
+(\rightarrow (\neg (\vee 1a)) (\neg))              
+(\neg (\neg (\neg (\vee 5e false)))              

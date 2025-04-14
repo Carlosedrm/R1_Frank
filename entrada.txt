@@ -1,0 +1,4 @@
+3
+true
+(\neg 5a)
+(\wedge 3b false)

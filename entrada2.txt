@@ -1,0 +1,7 @@
+6
+true
+false
+(\neg 1x)
+(\vee 2y)
+(\rightarrow (\neg 4a) (\vee true false))
+(\neg (\wedge 5b)
