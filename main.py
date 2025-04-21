@@ -1,9 +1,5 @@
-# Alunos: Arthur Przygocki, Henrique Tetilha, Carlos Mello
-
-import re
 import sys
 
-# Tokens possíveis
 TOKENS = {
     '\\neg': 'OP_UNARIO',
     '\\wedge': 'OP_BINARIO',
@@ -16,9 +12,6 @@ TOKENS = {
     ')': 'FECHAPAREN'
 }
 
-# Expressão regular para proposições
-PROP_REGEX = re.compile(r'[0-9][0-9a-z]*')
-
 class Token:
     def __init__(self, tipo, valor):
         self.tipo = tipo
@@ -26,6 +19,12 @@ class Token:
 
     def __repr__(self):
         return f"Token({self.tipo}, {self.valor})"
+
+def is_letter(c):
+    return 'a' <= c <= 'z'
+
+def is_digit(c):
+    return '0' <= c <= '9'
 
 def lexer(expressao):
     tokens = []
@@ -46,11 +45,13 @@ def lexer(expressao):
         if match:
             continue
 
-        prop_match = PROP_REGEX.match(expressao[i:])
-        if prop_match:
-            valor = prop_match.group(0)
-            tokens.append(Token('PROPOSICAO', valor))
-            i += len(valor)
+        # Verifica se é uma PROPOSICAO (começa com dígito seguido de letras ou dígitos)
+        if is_digit(expressao[i]):
+            j = i + 1
+            while j < len(expressao) and (is_digit(expressao[j]) or is_letter(expressao[j])):
+                j += 1
+            tokens.append(Token('PROPOSICAO', expressao[i:j]))
+            i = j
             continue
 
         # Token inválido
@@ -108,7 +109,7 @@ def validar_expressao(expr):
 
 def main():
     if len(sys.argv) != 2:
-        print("Use: python main.py arquivo.txt")
+        print("Uso: python validador.py arquivo.txt")
         return
 
     with open(sys.argv[1], 'r', encoding='utf-8') as f:
