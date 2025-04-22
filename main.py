@@ -1,3 +1,4 @@
+# Alunos: Arthur Przygocki, Henrique Tetilha, Carlos Mello
 import sys
 
 TOKENS = {
